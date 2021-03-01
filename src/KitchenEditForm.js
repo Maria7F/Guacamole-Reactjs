@@ -10,17 +10,18 @@ export default class KitchenAddForm extends Component {
         super(props)
 
         this.state = {
-             newKitchen: {}
+             newKitchen: props.kitchen
         }
     }
 
     handleChange = (event) => {
         const attributeToChange = event.target.name
         const newValue = event.target.value
-
         const updatedKitchen= {...this.state.newKitchen}
+
         updatedKitchen[attributeToChange] = newValue
         console.log(updatedKitchen)
+
         this.setState({
             newKitchen: updatedKitchen
         })
@@ -28,19 +29,10 @@ export default class KitchenAddForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.addKitchen(this.state.newKitchen);
+        this.props.editKitchen(this.state.newKitchen);
     }
 
-    addKitchen = (kitchen) => {
-        axios.post("guacamole/kitchen/add",kitchen)
-        .then(response => {
-            console.log("Added kitchen √√")
-        })
-        .catch(err => {
-            console.log("error adding kitchen xx")
-            console.log(err)
-        })
-    }
+
 
     render() {
         return (
@@ -53,7 +45,7 @@ export default class KitchenAddForm extends Component {
                     </Form.Group>
                     <br></br>
                     <Button variant="primary" type="submit">
-                        Add
+                        Save
                     </Button>
                 </Form>
             </div>
