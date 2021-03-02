@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form} from 'react-bootstrap'
+import { Button, Form, Alert} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
@@ -10,7 +10,9 @@ export default class KitchenAddForm extends Component {
         super(props)
 
         this.state = {
-             newKitchen: {}
+             newKitchen: {},
+             sucessMessage: null,
+             errorMessage: null,
         }
     }
 
@@ -32,19 +34,36 @@ export default class KitchenAddForm extends Component {
     }
 
     addKitchen = (kitchen) => {
-        axios.post("guacamole/kitchen/add",kitchen)
+        axios.post("guacamole/kitchen/add", kitchen,
+        {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        })
         .then(response => {
             console.log("Added kitchen √√")
+            this.setState({
+                sucessMessage:"Kitchen Added Successfully"
+            })
         })
         .catch(err => {
             console.log("error adding kitchen xx")
             console.log(err)
+            this.setState({
+                errorMessage:"Error could not add kitchen"
+            })
         })
     }
 
     render() {
+        const sucessMessage = this.state.sucessMessage ? (
+            <Alert variant="success">{this.state.sucessMessage}</Alert>) : null;
+
+            const errorMessage = this.state.errorMessage ? (
+                <Alert variant="danger">{this.state.errorMessage}</Alert>) : null;
         return (
             <div style={{ padding: 10 }}>
+                {sucessMessage} {errorMessage}
                 <h1>Add Kitchen</h1>
                 <Form onSubmit = {this.handleSubmit}>
                     <Form.Group controlId="formBasicEmail">

@@ -9,7 +9,9 @@ export default class RecipeAddForm extends Component {
         super(props)
 
         this.state = {
-             newRecipe: {}
+             newRecipe: {},
+             sucessMessage: null,
+             errorMessage:null,
         }
     }
 
@@ -31,21 +33,37 @@ export default class RecipeAddForm extends Component {
     }
 
     addRecipe = (recipe) => {
-        axios.post("guacamole/recipe/add",recipe)
+        axios.post("guacamole/recipe/add",recipe,
+        {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        })
         .then(response => {
             console.log("Added Recipe √√")
+            this.setState({
+                sucessMessage:"Recipe Added Successfully"
+            })
         })
         .catch(err => {
             console.log("error adding recipe xx")
             console.log(err)
+            this.setState({
+                errorMessage:"error adding recipe"
+            })
         })
     }
 
     
 
     render() {
+        const sucessMessage = this.state.sucessMessage ? (
+            <Alert variant="success">{this.state.sucessMessage}</Alert>) : null;
+            const errorMessage = this.state.errorMessage ? (
+                <Alert variant="danger">{this.state.errorMessage}</Alert>) : null;
         return (
             <div style={{ padding: 10 }} >
+                {sucessMessage} {errorMessage}
                 <h1>Add Recipe</h1>
                 <Form  onSubmit = {this.handleSubmit}>
                         <Form.Control name="name" onChange = {this.handleChange} type="text" placeholder="Dish Name" />

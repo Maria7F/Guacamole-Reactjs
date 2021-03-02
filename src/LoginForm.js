@@ -9,6 +9,7 @@ import { decode } from "jsonwebtoken";
 export default class LoginForm extends Component {
 
     state = {}
+
     loginHandler = () => {
         this.props.login(this.state);
     }
@@ -18,38 +19,14 @@ export default class LoginForm extends Component {
         this.setState(temp)
         console.log(temp);
     }
-    loginHandler = (user) => {
-        axios
-            .post("blogapp/user/authenticate", user)
-            .then((response) => {
-                console.log(response);
-                console.log(response.data.token);
-                if (response.data.token != null) {
-                    localStorage.setItem("token", response.data.token);
-                    let user = decode(response.data.token);
-                    this.setState({
-                        isAuth: true,
-                        user: user
-                    })
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-                this.setState({
-                    isAuth: false
-                })
-            });
-    };
-
-
     render() {
         return (
             <div style={{ padding: 10 }}>
                 <h1>log in</h1>
-                <Form onSubmit={this.handleSubmit}>
+                <Form>
                     <Form.Group controlId="formBasicEmail">
                         <br></br>
-                        <Form.Control type="email" placeholder="Enter email" onChange={this.handleChange} />
+                        <Form.Control type="email" placeholder="Enter email" name = "emailAddress" onChange={this.changeHandler} />
                         <Form.Text className="text-muted">
                             Example@example.com
                         </Form.Text>
@@ -57,10 +34,10 @@ export default class LoginForm extends Component {
 
                     <Form.Group controlId="formBasicPassword">
                         <br></br>
-                        <Form.Control type="password" placeholder="Password" onChange={this.handleChange} />
+                        <Form.Control type="password" placeholder="Password" name = "password" onChange={this.changeHandler} />
                     </Form.Group>
                     <br></br>
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" onClick={this.loginHandler}>
                         Log In
                     </Button>
                 </Form>

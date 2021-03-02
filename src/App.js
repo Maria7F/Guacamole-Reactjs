@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Home from './Home'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Nav, Navbar } from 'react-bootstrap'
+import { Nav, Navbar, Alert ,Fade} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import KitchenIndex from './KitchenIndex';
 import RecipeIndex from './RecipeIndex';
@@ -25,42 +25,93 @@ export default class App extends Component {
   state = {
     isAuth: false,
     user: null,
-    message: null,
+    sucessMessage: null,
+    errorMessage: null,
+    kitchens: [],
   };
+
+  componentDidMount() {
+    let token = localStorage.getItem("token");
+    if (token != null) {
+      let user = decode(token);
+      if (user) {
+        this.setState({
+          isAuth: true,
+          user: user,
+        });
+      } else if (!user) {
+        localStorage.removeItem("token");
+        this.setState({
+          isAuth: false,
+        });
+      }
+    }
+  }
+
   registerHandler = (user) => {
     axios
-      .post("blogapp/user/registration", user)
+      .post("guacamole/user/registration", user)
       .then((response) => {
         console.log(response);
+        this.setState({
+          sucessMessage: "Registered Successfully"
+        })
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
   loginHandler = (user) => {
     axios
-      .post("blogapp/user/authenticate", user)
+      .post("guacamole/user/authenticate", user)
       .then((response) => {
         console.log(response);
         console.log(response.data.token);
-        if(response.data.token != null){
+        console.log(decode(response.data.token));
+        if (response.data.token != null) {
           localStorage.setItem("token", response.data.token);
           let user = decode(response.data.token);
           this.setState({
             isAuth: true,
-            user: user
+            user: user,
+            sucessMessage: "Successfully logged in"
+          })
+        } else {
+          this.setState({
+            isAuth: false,
+            user: null,
+            errorMessage: "Incorrect Email Adress or Password"
           })
         }
       })
       .catch((error) => {
         console.log(error);
         this.setState({
-          isAuth: false
+          isAuth: false,
+          errorMessage: "Error Logging in"
         })
       });
   };
 
+  onLogoutHandler = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    this.setState({
+      isAuth: false,
+      user: null,
+      sucessMessage: "Successfully Logged out"
+    })
+  }
+
   render() {
+    const { isAuth } = this.state;
+    const errorMessage = this.state.errorMessage ? (
+      <Alert variant="danger">{this.state.errorMessage}</Alert>) : null;
+
+    const sucessMessage = this.state.sucessMessage ? (
+      <Alert variant="success" id="fade">{this.state.sucessMessage}</Alert>) : null;
+
     return (
       <div>
         <Router>
@@ -74,19 +125,29 @@ export default class App extends Component {
                 className="d-inline-block align-top"
               />{' '}Guacamole
             </Navbar.Brand>
-            
+
             <Navbar.Collapse className="justify-content-end">
-            <Nav.Item>
-              <Nav.Link eventKey="link-4"> <Link to="/Account">Account</Link> </Nav.Link>
-            </Nav.Item>
 
-            <Nav.Item>
-              <Nav.Link eventKey="link-5"> <Link to="/LoginForm">Login</Link> </Nav.Link>
-            </Nav.Item>
+              {isAuth ? (
+                <>
+                  <Nav.Item>
+                    <Nav.Link eventKey="link-4"> <Link to="/Account">Account</Link> </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="link-6"> <Link to="/" onClick={this.onLogoutHandler}>Logout</Link> </Nav.Link>
+                  </Nav.Item>
+                </>
+              ) : (
+                  <>
+                    <Nav.Item>
+                      <Nav.Link eventKey="link-5"> <Link to="/Login">Login</Link></Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="link-7" > <Link to='/Register' >Register</Link> </Nav.Link>
+                    </Nav.Item>
+                  </>
+                )}
 
-            <Nav.Item>
-              <Nav.Link eventKey="link-6" > <Link to='/RegisterForm' >Register</Link> </Nav.Link>
-            </Nav.Item>
             </Navbar.Collapse>
           </Navbar>
           <Nav variant="tabs" defaultActiveKey="">
@@ -95,25 +156,26 @@ export default class App extends Component {
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link eventKey="link-2"> <Link to='/Recipe'>Recipe</Link> </Nav.Link>
+              <Nav.Link eventKey="link-2"> <Link to='/Recipes'>Recipe</Link> </Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
-              <Nav.Link eventKey="link-3"> <Link to='/Kitchen'>Kitchen</Link> </Nav.Link>
+              <Nav.Link eventKey="link-3"> <Link to='/Kitchens'>Kitchen</Link> </Nav.Link>
             </Nav.Item>
           </Nav>
+           {errorMessage} {sucessMessage}
 
           <div>
             <Route exact path='/' component={Home}></Route>
-            <Route path='/Recipe' component={RecipeIndex}></Route>
-            <Route path='/Kitchen' component={KitchenIndex}></Route>
+            <Route path='/Recipes' component={() => <RecipeIndex auth={this.state.isAuth} />}></Route>
+            <Route path='/Kitchens' component={() => <KitchenIndex auth={this.state.isAuth}/>}></Route>
             <Route path='/Account' component={Account}></Route>
-            <Route path="/LoginForm" component={() => <LoginForm login={this.loginHandler} />}></Route>
-            <Route path='/RegisterForm' component={RegisterForm}></Route>
+            <Route path="/Login" component={() => isAuth ? <Home /> : <LoginForm login={this.loginHandler} />}></Route>
+            <Route path='/Register' component={() => <RegisterForm register={this.registerHandler} />}></Route>
             <Route path='/UserRecipies' component={UserRecipies}></Route>
             <Route path='/ProfileEditForm' component={ProfileEditForm}></Route>
-            <Route path='/RecipeAddForm' component={RecipeAddForm}></Route>
-            <Route path='/KitchenJoinForm' component={KitchenJoinForm}></Route>
+            <Route path='/RecipeAddForm' component={() => <RecipeAddForm user={this.state.user} />}></Route>
+            <Route path='/KitchenJoinForm' component={() => <KitchenJoinForm kitchens={this.state.kitchens} loadKitchenIndex={this.loadKitchenIndex} />}></Route>
             <Route path='/KitchenAddForm' component={KitchenAddForm}></Route>
             <Route path='/KitchenDetails' component={KitchenDetails}></Route>
             <Route path='/RecipeDetails' component={RecipeDetails}></Route>

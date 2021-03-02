@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Row, Col, Card } from 'react-bootstrap'
+import { Button, Row, Col, Card , Alert} from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
@@ -13,41 +13,51 @@ export default class KitchenIndex extends Component {
         super(props)
 
         this.state = {
-            kitchens: []
+            kitchens: [],
+            sucessMessage: null,
+            errorMessage: null,
         }
     }
-
-    componentDidMount() {
-        axios.get("guacamole/kitchen/index")
-            .then(response => {
-                console.log(response)
-                this.setState({
-                    kitchens: response.data
-                })
-            })
-            .catch(err => {
-                console.log(err)
-                console.log("could not get kitchen index")
-            })
+    
+    componentDidMount(){
+        this.loadKitchenIndex();
     }
 
+    loadKitchenIndex() {
+        axios.get("guacamole/kitchen/index")
+          .then(response => {
+            console.log(response)
+            this.setState({
+              kitchens: response.data
+            })
+          })
+          .catch(err => {
+            console.log(err)
+            console.log("could not get kitchen index")
+          })
+      }
+
     deleteKitchen = (id) => {
-        axios.delete("/guacamole/kitchen/delete", {params:{id: id} })
+        axios.delete(`/guacamole/kitchen/delete?id=${id}`,
+        {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        })
             .then(response => {
                 console.log("Deleted kitchen √√")
                 console.log(response)
-                const updatedkitchenIndex= [...this.state.kitchens];
-                const index = updatedkitchenIndex.findIndex(x => x.id === id);
-                if(index !== -1){
-                    updatedkitchenIndex.splice(index, 1) 
-                    this.setState({
-                        kitchens: updatedkitchenIndex
-                    })
-                }
+                this.setState({
+                    sucessMessage: "Kitchen Deleted Successfully"
+                })
+                this.loadKitchenIndex();
             })
             .catch(err => {
                 console.log("error deleting Kitchen xx")
                 console.log(err)
+                this.setState({
+                    errorMessage: "error deleting Kitchen"
+                })
             })
     }
 
@@ -59,15 +69,15 @@ export default class KitchenIndex extends Component {
     }
 
     editKitchen = (kitchen) =>{
-        axios.put("/guacamole/kitchen/edit", kitchen)
+        axios.put("/guacamole/kitchen/edit", kitchen, {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        })
             .then(response =>{
                 console.log("Edited!!")
-                // console.log(response)
-                const updatedKitchenIndex = [...this.state.kitchens];
-                updatedKitchenIndex.put(response.data);
-                this.setState({
-                    kitchens: updatedKitchenIndex
-                })
+                console.log(response)
+                this.loadKitchenIndex();
             })
             .catch(error =>{
                 console.log("Error Editing kitchen");
@@ -75,9 +85,14 @@ export default class KitchenIndex extends Component {
             })
     }
 
-    render() {
-        return (
+    render() {const sucessMessage = this.state.sucessMessage ? (
+        <Alert variant="success">{this.state.sucessMessage}</Alert>) : null;
+
+        const errorMessage = this.state.errorMessage ? (
+            <Alert variant="danger">{this.state.errorMessage}</Alert>) : null;
+    return (
             <div style={{ padding: 20}}>
+                {sucessMessage} {errorMessage}
                 <h1>Kitchens</h1>
                     <Row>
                     {this.state.kitchens.map((kitchen, index) =>
@@ -86,12 +101,19 @@ export default class KitchenIndex extends Component {
                                 <Card.Img variant="top" src='https://dummyimage.com/180x180/000000/ffffff.png&text=Kitchen+img' />
                                 <Card.Body>
                                     <Card.Title>{kitchen.name} Kitchen</Card.Title>
+                                    {this.props.auth ?(
+                                    <>
                                     <Button variant="outline-primary"><Link to='/KitchenDetails'>Enter</Link></Button>{" "}
                                     <Button variant="outline-primary" onClick={() => this.deleteKitchen(kitchen.id)}>Delete</Button>{" "}
                                     <>
                                     <Button variant="outline-primary" onClick={() => this.editView(kitchen.id)}>Edit</Button>
                                     {(this.state.isEdit && this.state.clickedKitchenId === kitchen.id) ? <KitchenEditForm kitchen={kitchen} editKitchen={this.editKitchen}/> : null}
                                     </>
+                                    </>
+                                    ):(
+                                    <>
+                                    <Button variant="outline-primary"><Link to='/KitchenDetails'>Enter</Link></Button>{" "}
+                                    </>)}
                                 </Card.Body>
                             </Card>
                             <br />

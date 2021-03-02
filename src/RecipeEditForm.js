@@ -36,7 +36,7 @@ export default class RecipeEditForm extends Component {
         return (
             <div style={{ padding: 10 }}>
                 <h1>Edit Recipe</h1>
-                <Form onSubmit={this.handleSubmit}>
+                <Form >
                     Dish Name:
                         <Form.Control type="text" name="name" onChange = {this.handleChange} placeholder = {this.props.recipe.name}/>
                         <br />
@@ -69,7 +69,7 @@ export default class RecipeEditForm extends Component {
                             <Form.File id="exampleFormControlFile1"  name="picture" label="Choose Image" />
                         </Form.Group>
                     <br></br>
-                    <Button type="submit" variant="primary" >Save</Button>
+                    <Button type="submit" variant="primary" onClick={this.handleSubmit}>Save</Button>
                 </Form>
             </div>
         )

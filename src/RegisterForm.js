@@ -5,67 +5,44 @@ import axios from 'axios'
 
 export default class RegisterForm extends Component {
 
-    constructor(props) {
-        super(props)
+    state = {}
 
-        this.state = {
-             newUser: {}
-        }
+    registerHandler = () => {
+        this.props.register(this.state);
     }
 
-    handleChange = (event) => {
-        const attributeToChange = event.target.name
-        const newValue = event.target.value
-
-        const updateduser = {...this.state.newUser}
-        updateduser[attributeToChange] = newValue
-        console.log(updateduser)
-        this.setState({
-            newUser: updateduser
-        })
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault()
-        this.addUser(this.state.newUser);
-    }
-
-    addUser = (user) => {
-        axios.post("guacamole/user/registration",user)
-        .then(response => {
-            console.log("Added User √√")
-        })
-        .catch(err => {
-            console.log("error adding user xx")
-            console.log(err)
-        })
+    changeHandler = (e) => {
+        let temp = { ... this.state }
+        temp[e.target.name] = e.target.value;
+        this.setState(temp)
+        console.log(temp);
     }
 
     render() {
         return (
             <div style={{ padding: 10 }}>
                 <h1>Register</h1>
-                <Form onSubmit = {this.handleSubmit}>
+                <Form>
                     <Row>
                         <Col>
-                            <Form.Control placeholder="First name" name = "firstName" onChange = {this.handleChange}/>
+                            <Form.Control placeholder="First name" name="firstName" onChange={this.changeHandler} />
                         </Col>
                         <Col>
-                            <Form.Control placeholder="Last name" name = "lastName" onChange = {this.handleChange}/>
+                            <Form.Control placeholder="Last name" name="lastName" onChange={this.changeHandler} />
                         </Col>
                     </Row>
                     <br></br>
                     <Row>
                         <Col>
-                            <Form.Control placeholder="City" name = "city" onChange = {this.handleChange}/>
+                            <Form.Control placeholder="City" name="city" onChange={this.changeHandler} />
                         </Col>
                         <Col>
-                            <Form.Control placeholder="Country" name = "address.country" onChange = {this.handleChange}/>
+                            <Form.Control placeholder="Country" name="country" onChange={this.changeHandler} />
                         </Col>
                     </Row>
                     <Form.Group controlId="formBasicEmail">
                         <br></br>
-                        <Form.Control type="email" placeholder="Enter email" name = "emailAddress" onChange = {this.handleChange}/>
+                        <Form.Control type="email" placeholder="Enter email" name="emailAddress" onChange={this.changeHandler} />
                         <Form.Text className="text-muted">
                             Example@example.com
                         </Form.Text>
@@ -73,18 +50,18 @@ export default class RegisterForm extends Component {
 
                     <Form.Group controlId="formBasicPassword" >
                         <br></br>
-                        <Form.Control type="password" placeholder="Password" name = "password" onChange = {this.handleChange}/>
+                        <Form.Control type="password" placeholder="Password" name="password" onChange={this.changeHandler} />
                     </Form.Group>
                     <br></br>
                     <Form.Group controlId="exampleForm.ControlSelect1">
                         <Form.Label>Role</Form.Label>
-                        <Form.Control as="select" name = "userRole" onChange = {this.handleChange}>
-                            <option defaultValue value="USER">User</option>
-                            <option value = "ADMIN">Admin</option>
+                        <Form.Control as="select" name="userRole" onChange={this.changeHandler}>
+                            <option defaultValue value="ROLE_USER">User</option>
+                            <option value="ROLE_ADMIN">Admin</option>
                         </Form.Control>
                     </Form.Group>
                     <br></br>
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" onClick = {this.registerHandler}>
                         Submit
                     </Button>
                 </Form>
