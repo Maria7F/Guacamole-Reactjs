@@ -21,6 +21,7 @@ import axios from 'axios';
 import { decode } from "jsonwebtoken";
 
 const URL = "http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/";
+const CORS = "https://cors-anywhere.herokuapp.com/"
 
 export default class App extends Component {
 
@@ -53,7 +54,7 @@ export default class App extends Component {
 
   registerHandler = (user) => {
     axios
-      .post(URL+"guacamole/user/registration", user)
+      .post(CORS+URL+"guacamole/user/registration", user)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -71,7 +72,7 @@ export default class App extends Component {
 
   loginHandler = (user) => {
     axios
-      .post(URL+"guacamole/user/authenticate", user)
+      .post(CORS+URL+"guacamole/user/authenticate", user)
       .then((response) => {
         console.log(response);
         console.log(response.data.token);

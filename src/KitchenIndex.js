@@ -7,6 +7,8 @@ import kitchenPic from './picture/kitchen.svg';
 import KitchenEditForm from './KitchenEditForm'
 
 const URL = "http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/";
+const CORS = "https://cors-anywhere.herokuapp.com/"
+
 export default class KitchenIndex extends Component {
 
     constructor(props) {
@@ -24,7 +26,7 @@ export default class KitchenIndex extends Component {
     }
 
     loadKitchenIndex() {
-        axios.get(URL+"guacamole/kitchen/index")
+        axios.get(CORS+URL+"guacamole/kitchen/index")
           .then(response => {
             console.log(response)
             this.setState({
@@ -38,7 +40,7 @@ export default class KitchenIndex extends Component {
       }
 
     deleteKitchen = (id) => {
-        axios.delete(URL+`/guacamole/kitchen/delete?id=${id}`,
+        axios.delete(CORS+URL+`/guacamole/kitchen/delete?id=${id}`,
         {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")
@@ -69,7 +71,7 @@ export default class KitchenIndex extends Component {
     }
 
     editKitchen = (kitchen) =>{
-        axios.put(URL+"/guacamole/kitchen/edit", kitchen, {
+        axios.put(CORS+URL+"/guacamole/kitchen/edit", kitchen, {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")
             }
