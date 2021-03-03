@@ -3,6 +3,8 @@ import axios from "axios"
 
 import { Button, Card, Row, Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import userRecipes from "./picture/userRecipes.svg"
+
 
 export default class UserRecipe extends Component {
 
@@ -23,7 +25,7 @@ export default class UserRecipe extends Component {
                 <Row>
                     <Col>
                         <Card style={{ width: '18rem', textAlign: 'center' }}>
-                            <Card.Img variant="top" src='https://dummyimage.com/180x180/000000/ffffff.png&text=Dish+img' />
+                            <Card.Img variant="top" src={userRecipes} />
                             <Card.Body>
                                 <Card.Title>Dish Name</Card.Title>
                                 <Card.Text>

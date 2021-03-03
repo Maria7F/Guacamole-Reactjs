@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Card, Row, Col } from 'react-bootstrap'
+import userImg from "./picture/userImg.svg"
 
 
 export default class KitchenDetails extends Component {
@@ -11,7 +12,7 @@ export default class KitchenDetails extends Component {
                     <Row >
                         <Col>
                             <Card style={{ width: '18rem', textAlign: 'center' }}>
-                                <Card.Img variant="top" src='https://dummyimage.com/180x180/000000/ffffff.png&text=User+img'  />
+                                <Card.Img variant="top" src={userImg} />
                                 <Card.Body>
                                     <Card.Title>User Name</Card.Title>
                                     {/* <>
