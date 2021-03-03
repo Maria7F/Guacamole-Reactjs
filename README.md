@@ -4,10 +4,10 @@ Guacamole is a cooking website where the user can add a recipe and share it with
 
 ## Links
 
-[React Repository](https://git.generalassemb.ly/mariafelemban/GuacamoleReact)
-[Eclipse Repository](https://git.generalassemb.ly/mariafelemban/GuacamoleEclipse)
-[Front-End](https://pages.git.generalassemb.ly/mariafelemban/GuacamoleReact/)
-[Back-End](http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/)
+* [React Repository](https://git.generalassemb.ly/mariafelemban/GuacamoleReact)
+* [Eclipse Repository](https://git.generalassemb.ly/mariafelemban/GuacamoleEclipse)
+* [Front-End](https://pages.git.generalassemb.ly/mariafelemban/GuacamoleReact/)
+* [Back-End](http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/)
 
 
 ## Planning Story
@@ -73,12 +73,21 @@ I broke down the project into
 
 ### Website Screenshot
 
-<img src="./src/main/resources/static/images/login.png" width="200">
+<img src="./picture/home.png" width="200">
+<img src="./picture/recipe.png" width="200">
+<img src="./picture/kitchen.png" width="200">
+<img src="./picture/account.png" width="200">
+<img src="./picture/register.png" width="200">
+<img src="./picture/login.png" width="200">
+
 
 ### Wireframes
 
-<img src="./src/main/resources/static/images/login.png" width="200">
+<img src="./picture/1.jpg" width="200">
+<img src="./picture/2.jpg" width="200">
+<img src="./picture/3.jpg" width="200">
+<img src="./picture/3.jpg" width="200">
 
 ### ERD
 
-<img src="./src/main/resources/static/images/login.png" width="200">
+<img src="./picture/ERD_project3.png" width="200">
