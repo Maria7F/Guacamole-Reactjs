@@ -73,7 +73,7 @@ I broke down the project into
 
 ### Website Screenshot
 
-<img src="src/picture/home.png" width="400">
+<img src="src/picture/home.png" width="500">
 <img src="src/picture/recipe.png" width="200">
 <img src="src/picture/kitchen.png" width="200">
 <img src="src/picture/account.png" width="200">
@@ -90,4 +90,4 @@ I broke down the project into
 
 ### ERD
 
-<img src="src/picture/ERD_project3.png" width="200">
+<img src="src/picture/ERD_project3.png" width="500">
