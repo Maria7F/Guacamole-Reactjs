@@ -36,7 +36,7 @@ export default class RecipeAddForm extends Component {
     }
 
     addRecipe = (recipe) => {
-        axios.post(CORS+URL+"recipe/add",recipe,
+        axios.post("guacamole/recipe/add",recipe,
         {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")

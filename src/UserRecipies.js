@@ -11,7 +11,7 @@ const CORS = "https://cors-anywhere.herokuapp.com/"
 export default class UserRecipe extends Component {
 
     deleteRecipe = (id) => {
-        axios.delete(CORS+URL+"recipe/delete", {params:{id: id}})
+        axios.delete("guacamole/recipe/delete", {params:{id: id}})
         .then(response => {
     
         })

@@ -54,7 +54,7 @@ export default class App extends Component {
 
   registerHandler = (user) => {
     axios
-      .post(CORS+URL+"user/registration", user)
+      .post("https://cors-anywhere.herokuapp.com/http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/user/registration", user)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -72,7 +72,7 @@ export default class App extends Component {
 
   loginHandler = (user) => {
     axios
-      .post(CORS+URL+"user/authenticate", user)
+      .post("https://cors-anywhere.herokuapp.com/http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/user/authenticate", user)
       .then((response) => {
         console.log(response);
         console.log(response.data.token);
@@ -126,7 +126,9 @@ export default class App extends Component {
       <div>
         <Router>
           <Navbar bg="dark" variant="dark" className="float-content-center">
-            <Navbar.Brand href = "/Home">
+          
+            <Navbar.Brand>
+            <Link to="/"/>
               <img
                 alt=""
                 src={logo}
@@ -135,7 +137,7 @@ export default class App extends Component {
                 className="d-inline-block align-top"/>{' '}
                 Guacamole
             </Navbar.Brand>
-
+            
             <Navbar.Collapse className="justify-content-end">
 
               {isAuth ? (
@@ -174,10 +176,8 @@ export default class App extends Component {
             </Nav.Item>
           </Nav>
            {errorMessage} {sucessMessage}
-           
           <div>
             <Route exact path='/' component={Home}></Route>
-            <Route  path='/Home' component={Home}></Route>
             <Route path='/Recipes' component={() => <RecipeIndex auth={this.state.isAuth} />}></Route>
             <Route path='/Kitchens' component={() => <KitchenIndex auth={this.state.isAuth}/>}></Route>
             <Route path='/Account' component={Account}></Route>
