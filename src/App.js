@@ -54,7 +54,7 @@ export default class App extends Component {
 
   registerHandler = (user) => {
     axios
-      .post("https://cors-anywhere.herokuapp.com/http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/user/registration", user)
+      .post("http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/user/registration", user)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -72,7 +72,7 @@ export default class App extends Component {
 
   loginHandler = (user) => {
     axios
-      .post("https://cors-anywhere.herokuapp.com/http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/user/authenticate", user)
+      .post("/http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/user/authenticate", user)
       .then((response) => {
         console.log(response);
         console.log(response.data.token);
