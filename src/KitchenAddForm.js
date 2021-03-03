@@ -36,7 +36,7 @@ export default class KitchenAddForm extends Component {
     }
 
     addKitchen = (kitchen) => {
-        axios.post(CORS+URL+"guacamole/kitchen/add", kitchen,
+        axios.post(CORS+URL+"kitchen/add", kitchen,
         {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")

@@ -6,10 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import userRecipes from "./picture/userRecipes.svg"
 
 const URL = "http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/";
+const CORS = "https://cors-anywhere.herokuapp.com/"
+
 export default class UserRecipe extends Component {
 
     deleteRecipe = (id) => {
-        axios.delete(URL+"/guacamole/recipe/delete", {params:{id: id}})
+        axios.delete(CORS+URL+"recipe/delete", {params:{id: id}})
         .then(response => {
     
         })

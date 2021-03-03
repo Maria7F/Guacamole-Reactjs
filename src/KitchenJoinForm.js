@@ -21,7 +21,7 @@ export default class KitchenJoinForm extends Component {
     }
 
     loadKitchenIndex() {
-        axios.get(CORS+URL+"guacamole/kitchen/index")
+        axios.get(CORS+URL+"kitchen/index")
           .then(response => {
             console.log(response)
             this.setState({

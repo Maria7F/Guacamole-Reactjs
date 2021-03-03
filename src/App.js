@@ -54,7 +54,7 @@ export default class App extends Component {
 
   registerHandler = (user) => {
     axios
-      .post(CORS+URL+"guacamole/user/registration", user)
+      .post(CORS+URL+"user/registration", user)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -72,7 +72,7 @@ export default class App extends Component {
 
   loginHandler = (user) => {
     axios
-      .post(CORS+URL+"guacamole/user/authenticate", user)
+      .post(CORS+URL+"user/authenticate", user)
       .then((response) => {
         console.log(response);
         console.log(response.data.token);

@@ -27,7 +27,7 @@ export default class RecipeIndex extends Component {
     }
 
     loadRecipeIndex() {
-        axios.get(CORS+URL+"guacamole/recipe/index")
+        axios.get(CORS+URL+"recipe/index")
             .then(response => {
                 console.log(response)
                 this.setState({
@@ -41,7 +41,7 @@ export default class RecipeIndex extends Component {
     }
 
     deleteRecipe = (id) => {
-        axios.delete(CORS+URL+`/guacamole/recipe/delete?id=${id}`,
+        axios.delete(CORS+URL+`recipe/delete?id=${id}`,
         {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")
@@ -72,7 +72,7 @@ export default class RecipeIndex extends Component {
     }
 
     editRecipe = (recipe) => {
-        axios.put(CORS+URL+"/guacamole/recipe/edit", recipe,
+        axios.put(CORS+URL+"recipe/edit", recipe,
             {
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem("token")
@@ -103,7 +103,7 @@ export default class RecipeIndex extends Component {
     }
 
     recipeDetail = (recipe) => {
-        axios.get(CORS+URL+"/guacamole/recipe/detail", recipe)
+        axios.get(CORS+URL+"recipe/detail", recipe)
             .then(response => {
                 console.log("get recipe details!!")
                 console.log(response)

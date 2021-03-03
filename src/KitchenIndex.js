@@ -26,7 +26,7 @@ export default class KitchenIndex extends Component {
     }
 
     loadKitchenIndex() {
-        axios.get(CORS+URL+"guacamole/kitchen/index")
+        axios.get(CORS+URL+"kitchen/index")
           .then(response => {
             console.log(response)
             this.setState({
@@ -40,7 +40,7 @@ export default class KitchenIndex extends Component {
       }
 
     deleteKitchen = (id) => {
-        axios.delete(CORS+URL+`/guacamole/kitchen/delete?id=${id}`,
+        axios.delete(CORS+URL+`kitchen/delete?id=${id}`,
         {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")
@@ -71,7 +71,7 @@ export default class KitchenIndex extends Component {
     }
 
     editKitchen = (kitchen) =>{
-        axios.put(CORS+URL+"/guacamole/kitchen/edit", kitchen, {
+        axios.put(CORS+URL+"kitchen/edit", kitchen, {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")
             }
