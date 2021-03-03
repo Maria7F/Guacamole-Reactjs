@@ -85,7 +85,7 @@ I broke down the project into
 
 <img src="src/picture/1.jpg" width="300"> <img src="src/picture/2.jpg" width="300">
 
-<img src="src/picture/3.jpg" width="300"> <img src="src/picture/3.jpg" width="300">
+<img src="src/picture/3.jpg" width="300"> <img src="src/picture/4.jpg" width="300">
 
 
 ### ERD
