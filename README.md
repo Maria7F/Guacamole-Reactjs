@@ -73,21 +73,21 @@ I broke down the project into
 
 ### Website Screenshot
 
-<img src="src/picture/home.png" width="200">
-<img src="/picture/recipe.png" width="200">
-<img src="/picture/kitchen.png" width="200">
-<img src="/picture/account.png" width="200">
-<img src="/picture/register.png" width="200">
-<img src="/picture/login.png" width="200">
+<img src="src/picture/home.png" width="400">
+<img src="src/picture/recipe.png" width="200">
+<img src="src/picture/kitchen.png" width="200">
+<img src="src/picture/account.png" width="200">
+<img src="src/picture/register.png" width="200">
+<img src="src/picture/login.png" width="200">
 
 
 ### Wireframes
 
-<img src="/picture/1.jpg" width="200">
-<img src="/picture/2.jpg" width="200">
-<img src="/picture/3.jpg" width="200">
-<img src="/picture/3.jpg" width="200">
+<img src="src/picture/1.jpg" width="200">
+<img src="src/picture/2.jpg" width="200">
+<img src="src/picture/3.jpg" width="200">
+<img src="src/picture/3.jpg" width="200">
 
 ### ERD
 
-<img src="/picture/ERD_project3.png" width="200">
+<img src="src/picture/ERD_project3.png" width="200">
