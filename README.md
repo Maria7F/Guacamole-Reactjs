@@ -83,10 +83,10 @@ I broke down the project into
 
 ### Wireframes
 
-<img src="src/picture/1.jpg" width="500">
-<img src="src/picture/2.jpg" width="500">
-<img src="src/picture/3.jpg" width="500">
-<img src="src/picture/3.jpg" width="500">
+<img src="src/picture/1.jpg" width="300">
+<img src="src/picture/2.jpg" width="300">
+<img src="src/picture/3.jpg" width="300">
+<img src="src/picture/3.jpg" width="300">
 
 ### ERD
 
