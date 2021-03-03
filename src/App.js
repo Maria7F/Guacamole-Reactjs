@@ -123,14 +123,14 @@ export default class App extends Component {
       <div>
         <Router>
           <Navbar bg="dark" variant="dark" className="float-content-center">
-            <Navbar.Brand href="/">
+            <Navbar.Brand>
               <img
                 alt=""
                 src={logo}
                 width="30"
                 height="30"
-                className="d-inline-block align-top"
-              />{' '}Guacamole
+                className="d-inline-block align-top"/>{' '}
+                Guacamole
             </Navbar.Brand>
 
             <Navbar.Collapse className="justify-content-end">
@@ -171,6 +171,7 @@ export default class App extends Component {
             </Nav.Item>
           </Nav>
            {errorMessage} {sucessMessage}
+           <Home/>
 
           <div>
             <Route exact path='/' component={Home}></Route>
