@@ -20,7 +20,7 @@ import logo from './picture/logo2.svg';
 import axios from 'axios';
 import { decode } from "jsonwebtoken";
 
-// cons URL = ""
+const URL = "http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/";
 
 export default class App extends Component {
 
@@ -53,7 +53,7 @@ export default class App extends Component {
 
   registerHandler = (user) => {
     axios
-      .post("guacamole/user/registration", user)
+      .post(URL+"guacamole/user/registration", user)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -71,7 +71,7 @@ export default class App extends Component {
 
   loginHandler = (user) => {
     axios
-      .post("guacamole/user/authenticate", user)
+      .post(URL+"guacamole/user/authenticate", user)
       .then((response) => {
         console.log(response);
         console.log(response.data.token);
@@ -125,7 +125,7 @@ export default class App extends Component {
       <div>
         <Router>
           <Navbar bg="dark" variant="dark" className="float-content-center">
-            <Navbar.Brand href="/Home">
+            <Navbar.Brand href = "/Home">
               <img
                 alt=""
                 src={logo}
@@ -143,7 +143,7 @@ export default class App extends Component {
                     <Nav.Link eventKey="link-4"> <Link to="/Account">Account</Link> </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="link-6"> <Link to="/Home" onClick={this.onLogoutHandler}>Logout</Link> </Nav.Link>
+                    <Nav.Link eventKey="link-6"> <Link to="/" onClick={this.onLogoutHandler}>Logout</Link> </Nav.Link>
                   </Nav.Item>
                 </>
               ) : (
@@ -161,7 +161,7 @@ export default class App extends Component {
           </Navbar>
           <Nav variant="tabs" defaultActiveKey="">
             <Nav.Item>
-              <Nav.Link eventKey="link-1"> <Link to='/Home'>Home</Link> </Nav.Link>
+              <Nav.Link eventKey="link-1"> <Link to='/'>Home</Link> </Nav.Link>
             </Nav.Item>
 
             <Nav.Item>
@@ -173,10 +173,10 @@ export default class App extends Component {
             </Nav.Item>
           </Nav>
            {errorMessage} {sucessMessage}
-           <Home></Home>
-
+           
           <div>
-            <Route exact path='/Home' component={Home}></Route>
+            <Route exact path='/' component={Home}></Route>
+            <Route  path='/Home' component={Home}></Route>
             <Route path='/Recipes' component={() => <RecipeIndex auth={this.state.isAuth} />}></Route>
             <Route path='/Kitchens' component={() => <KitchenIndex auth={this.state.isAuth}/>}></Route>
             <Route path='/Account' component={Account}></Route>

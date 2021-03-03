@@ -3,6 +3,7 @@ import { Button, Alert, Form, Row, Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
+const URL = "http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/";
 export default class RecipeAddForm extends Component {
 
     constructor(props) {
@@ -33,7 +34,7 @@ export default class RecipeAddForm extends Component {
     }
 
     addRecipe = (recipe) => {
-        axios.post("guacamole/recipe/add",recipe,
+        axios.post(URL+"guacamole/recipe/add",recipe,
         {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")

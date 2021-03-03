@@ -3,7 +3,7 @@ import { Button, Form, Alert} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
-
+const URL = "http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/";
 export default class KitchenAddForm extends Component {
 
     constructor(props) {
@@ -34,7 +34,7 @@ export default class KitchenAddForm extends Component {
     }
 
     addKitchen = (kitchen) => {
-        axios.post("guacamole/kitchen/add", kitchen,
+        axios.post(URL+"guacamole/kitchen/add", kitchen,
         {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")
@@ -65,13 +65,13 @@ export default class KitchenAddForm extends Component {
             <div style={{ padding: 10 }}>
                 {sucessMessage} {errorMessage}
                 <h1>Add Kitchen</h1>
-                <Form onSubmit = {this.handleSubmit}>
+                <Form >
                     <Form.Group controlId="formBasicEmail">
                         <br></br>
                         <Form.Control type="text" placeholder="Kitchen's Name" name = "name" onChange = {this.handleChange}/>
                     </Form.Group>
                     <br></br>
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" type="submit" onClick = {this.handleSubmit}>
                         Add
                     </Button>
                 </Form>
