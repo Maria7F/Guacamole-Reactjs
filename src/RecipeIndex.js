@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { Button, Card, Row, Col, Alert } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
-
+import recipePic from "./picture/recipe.svg"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RecipeEditForm from './RecipeEditForm';
 import RecipeDetails from './RecipeDetails';
@@ -122,7 +122,7 @@ export default class RecipeIndex extends Component {
                     {this.state.recipes.map((recipe, index) =>
                         <Col key={index}>
                             <Card style={{ width: '18rem', textAlign: 'center' }}>
-                                <Card.Img variant="top" src='https://dummyimage.com/180x180/000000/ffffff.png&text=Dish+img' />
+                                <Card.Img variant="top" src={recipePic} />
                                 <Card.Body>
                                     <Card.Title> {recipe.name} </Card.Title>
                                     <Card.Text>

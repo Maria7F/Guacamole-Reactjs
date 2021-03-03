@@ -3,7 +3,7 @@ import { Button, Row, Col, Card , Alert} from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
-import logo from './picture/italy-svgrepo-com.svg';
+import kitchenPic from './picture/kitchen.svg';
 import KitchenEditForm from './KitchenEditForm'
 
 
@@ -98,7 +98,7 @@ export default class KitchenIndex extends Component {
                     {this.state.kitchens.map((kitchen, index) =>
                         <Col key={index}>
                             <Card style={{ width: '18rem', textAlign: 'center' }}>
-                                <Card.Img variant="top" src='https://dummyimage.com/180x180/000000/ffffff.png&text=Kitchen+img' />
+                                <Card.Img variant="top" src={kitchenPic} />
                                 <Card.Body>
                                     <Card.Title>{kitchen.name} Kitchen</Card.Title>
                                     {this.props.auth ?(

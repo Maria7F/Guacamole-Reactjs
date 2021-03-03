@@ -25,6 +25,7 @@ export default class App extends Component {
   state = {
     isAuth: false,
     user: null,
+    isRegistered: false,
     sucessMessage: null,
     errorMessage: null,
     kitchens: [],
@@ -54,11 +55,15 @@ export default class App extends Component {
       .then((response) => {
         console.log(response);
         this.setState({
-          sucessMessage: "Registered Successfully"
+          isRegistered: true,
+          sucessMessage: "Registered Successfully",
         })
       })
       .catch((error) => {
         console.log(error);
+        this.setState({
+          errorMessage: "Error occured while regitering"
+        })
       });
   };
 
@@ -106,6 +111,8 @@ export default class App extends Component {
 
   render() {
     const { isAuth } = this.state;
+    const { isRegistered } = this.setState;
+    
     const errorMessage = this.state.errorMessage ? (
       <Alert variant="danger">{this.state.errorMessage}</Alert>) : null;
 
@@ -171,11 +178,11 @@ export default class App extends Component {
             <Route path='/Kitchens' component={() => <KitchenIndex auth={this.state.isAuth}/>}></Route>
             <Route path='/Account' component={Account}></Route>
             <Route path="/Login" component={() => isAuth ? <Home /> : <LoginForm login={this.loginHandler} />}></Route>
-            <Route path='/Register' component={() => <RegisterForm register={this.registerHandler} />}></Route>
+            <Route path='/Register' component={() => isRegistered ? <LoginForm /> : <RegisterForm register={this.registerHandler} />}></Route>
             <Route path='/UserRecipies' component={UserRecipies}></Route>
             <Route path='/ProfileEditForm' component={ProfileEditForm}></Route>
-            <Route path='/RecipeAddForm' component={() => <RecipeAddForm user={this.state.user} />}></Route>
-            <Route path='/KitchenJoinForm' component={() => <KitchenJoinForm kitchens={this.state.kitchens} loadKitchenIndex={this.loadKitchenIndex} />}></Route>
+            <Route path='/RecipeAddForm' component={RecipeAddForm}></Route>
+            <Route path='/KitchenJoinForm' component={KitchenJoinForm}></Route>
             <Route path='/KitchenAddForm' component={KitchenAddForm}></Route>
             <Route path='/KitchenDetails' component={KitchenDetails}></Route>
             <Route path='/RecipeDetails' component={RecipeDetails}></Route>
