@@ -20,8 +20,7 @@ import logo from './picture/logo2.svg';
 import axios from 'axios';
 import { decode } from "jsonwebtoken";
 
-const URL = "http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/";
-const CORS = "https://cors-anywhere.herokuapp.com/"
+
 
 export default class App extends Component {
 

@@ -3,8 +3,7 @@ import { Button,Form} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 
-const URL = "http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/";
-const CORS = "https://cors-anywhere.herokuapp.com/"
+
 
 export default class KitchenJoinForm extends Component {
 
@@ -21,7 +20,7 @@ export default class KitchenJoinForm extends Component {
     }
 
     loadKitchenIndex() {
-        axios.get("guacamole/kitchen/index")
+        axios.get("https://cors-anywhere.herokuapp.com/http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/kitchen/index")
           .then(response => {
             console.log(response)
             this.setState({

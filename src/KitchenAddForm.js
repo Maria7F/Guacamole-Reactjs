@@ -3,9 +3,6 @@ import { Button, Form, Alert} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
-const URL = "http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/";
-const CORS = "https://cors-anywhere.herokuapp.com/"
-
 export default class KitchenAddForm extends Component {
 
     constructor(props) {
@@ -36,7 +33,7 @@ export default class KitchenAddForm extends Component {
     }
 
     addKitchen = (kitchen) => {
-        axios.post("guacamole/kitchen/add", kitchen,
+        axios.post("https://cors-anywhere.herokuapp.com/http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/kitchen/add", kitchen,
         {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")

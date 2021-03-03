@@ -7,8 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import RecipeEditForm from './RecipeEditForm';
 import RecipeDetails from './RecipeDetails';
 
-const URL = "http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/";
-const CORS = "https://cors-anywhere.herokuapp.com/"
+
 
 export default class RecipeIndex extends Component {
 
@@ -27,7 +26,7 @@ export default class RecipeIndex extends Component {
     }
 
     loadRecipeIndex() {
-        axios.get("guacamole/recipe/index")
+        axios.get("https://cors-anywhere.herokuapp.com/http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/recipe/index")
             .then(response => {
                 console.log(response)
                 this.setState({
@@ -41,7 +40,7 @@ export default class RecipeIndex extends Component {
     }
 
     deleteRecipe = (id) => {
-        axios.delete(`guacamole/recipe/delete?id=${id}`,
+        axios.delete(`https://cors-anywhere.herokuapp.com/http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/recipe/delete?id=${id}`,
         {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")
@@ -72,7 +71,7 @@ export default class RecipeIndex extends Component {
     }
 
     editRecipe = (recipe) => {
-        axios.put("guacamole/recipe/edit", recipe,
+        axios.put("https://cors-anywhere.herokuapp.com/http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/recipe/edit", recipe,
             {
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem("token")
@@ -103,7 +102,7 @@ export default class RecipeIndex extends Component {
     }
 
     recipeDetail = (recipe) => {
-        axios.get("guacamole/recipe/detail", recipe)
+        axios.get("https://cors-anywhere.herokuapp.com/http://guacamole-env.eba-mumrxm3n.us-east-2.elasticbeanstalk.com/recipe/detail", recipe)
             .then(response => {
                 console.log("get recipe details!!")
                 console.log(response)
