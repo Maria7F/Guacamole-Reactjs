@@ -36,16 +36,16 @@ I broke down the project into
 
 ## Technologies Used
 
-    - Git
-    - Github
-    - Java - v11
-    - MySQL
-    - Spring Boot
-    - MVC
-    - React
-    - JWT
-    - axios
-    - Bootstrap
+* Git
+* Github
+* Java - v11
+* MySQL
+* Spring Boot
+* MVC
+* React
+* JWT
+* axios
+* Bootstrap
 
 ## Catalog of Routes
 
