@@ -89,6 +89,9 @@ export default class RecipeIndex extends Component {
             .catch(error => {
                 console.log("Error Editing recipe");
                 console.log(error)
+                this.setState({
+                    errorMessage: "error editting Recipe"
+                })
             })
     }
 

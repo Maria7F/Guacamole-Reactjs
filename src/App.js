@@ -65,7 +65,7 @@ export default class App extends Component {
       .catch((error) => {
         console.log(error);
         this.setState({
-          errorMessage: "Error occured while regitering"
+          errorMessage: "Error occured while registration"
         })
       });
   };
@@ -89,7 +89,7 @@ export default class App extends Component {
           this.setState({
             isAuth: false,
             user: null,
-            errorMessage: "Incorrect Email Adress or Password"
+            errorMessage: "Incorrect Email Address or Password"
           })
         }
       })

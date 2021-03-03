@@ -80,10 +80,16 @@ export default class KitchenIndex extends Component {
                 console.log("Edited!!")
                 console.log(response)
                 this.loadKitchenIndex();
+                this.setState({
+                    sucessMessage: "Editted successfully"
+                })
             })
             .catch(error =>{
                 console.log("Error Editing kitchen");
                 console.log(error)
+                this.setState({
+                    errorMessage: "error Editting Kitchen"
+                })
             })
     }
 
