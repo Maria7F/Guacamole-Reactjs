@@ -73,12 +73,12 @@ I broke down the project into
 
 ### Website Screenshot
 
-<img src="./picture/home.png" width="200">
-<img src="./picture/recipe.png" width="200">
-<img src="./picture/kitchen.png" width="200">
-<img src="./picture/account.png" width="200">
-<img src="./picture/register.png" width="200">
-<img src="./picture/login.png" width="200">
+<img src="../picture/home.png" width="200">
+<img src="../picture/recipe.png" width="200">
+<img src="../picture/kitchen.png" width="200">
+<img src="../picture/account.png" width="200">
+<img src="../picture/register.png" width="200">
+<img src="../picture/login.png" width="200">
 
 
 ### Wireframes
