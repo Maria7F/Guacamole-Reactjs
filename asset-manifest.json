@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/Guacamole-Reactjs/static/css/main.d725c3ff.chunk.css",
+    "main.js": "/Guacamole-Reactjs/static/js/main.b9f55220.chunk.js",
+    "main.js.map": "/Guacamole-Reactjs/static/js/main.b9f55220.chunk.js.map",
+    "runtime-main.js": "/Guacamole-Reactjs/static/js/runtime-main.1054e98f.js",
+    "runtime-main.js.map": "/Guacamole-Reactjs/static/js/runtime-main.1054e98f.js.map",
+    "static/css/2.2f9ba80b.chunk.css": "/Guacamole-Reactjs/static/css/2.2f9ba80b.chunk.css",
+    "static/js/2.0ae52160.chunk.js": "/Guacamole-Reactjs/static/js/2.0ae52160.chunk.js",
+    "static/js/2.0ae52160.chunk.js.map": "/Guacamole-Reactjs/static/js/2.0ae52160.chunk.js.map",
+    "static/js/3.550ea372.chunk.js": "/Guacamole-Reactjs/static/js/3.550ea372.chunk.js",
+    "static/js/3.550ea372.chunk.js.map": "/Guacamole-Reactjs/static/js/3.550ea372.chunk.js.map",
+    "index.html": "/Guacamole-Reactjs/index.html",
+    "static/css/2.2f9ba80b.chunk.css.map": "/Guacamole-Reactjs/static/css/2.2f9ba80b.chunk.css.map",
+    "static/css/main.d725c3ff.chunk.css.map": "/Guacamole-Reactjs/static/css/main.d725c3ff.chunk.css.map",
+    "static/js/2.0ae52160.chunk.js.LICENSE.txt": "/Guacamole-Reactjs/static/js/2.0ae52160.chunk.js.LICENSE.txt",
+    "static/media/kitchen.e2e2235b.svg": "/Guacamole-Reactjs/static/media/kitchen.e2e2235b.svg",
+    "static/media/logo1.2ab530ff.svg": "/Guacamole-Reactjs/static/media/logo1.2ab530ff.svg",
+    "static/media/logo2.e8c21106.svg": "/Guacamole-Reactjs/static/media/logo2.e8c21106.svg",
+    "static/media/recipe.d7a55c76.svg": "/Guacamole-Reactjs/static/media/recipe.d7a55c76.svg",
+    "static/media/userImg.017534bc.svg": "/Guacamole-Reactjs/static/media/userImg.017534bc.svg",
+    "static/media/userRecipes.4433a3aa.svg": "/Guacamole-Reactjs/static/media/userRecipes.4433a3aa.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1054e98f.js",
+    "static/css/2.2f9ba80b.chunk.css",
+    "static/js/2.0ae52160.chunk.js",
+    "static/css/main.d725c3ff.chunk.css",
+    "static/js/main.b9f55220.chunk.js"
+  ]
+}
